@@ -1,0 +1,39 @@
+
+.WOSelection{
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  padding-left: 20px;
+  position: relative;
+  margin-right: 0.5rem;
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5%;
+  max-lines: 3;
+}
+
+.formControl{
+  margin: 3;
+}
+
+.muscleSelection {
+  padding-left: 20px;
+}
+
+.timeBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid rgb(0, 0, 0);
+  width: 340px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.timeSlider {
+  width: 300px;
+}
