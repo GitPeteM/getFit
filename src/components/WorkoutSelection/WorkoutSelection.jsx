@@ -3,7 +3,7 @@ import { Box, Slider, FormLabel, FormControl, FormGroup, FormHelperText, Checkbo
 import styles from './WorkoutSelection.module.css';
 
 
-export default function WorkoutSelection() {
+export default function WorkoutSelection({ workoutChange }) {
   const [state, setState] = useState({
     chest: false,
     arms: false,
@@ -31,6 +31,11 @@ export default function WorkoutSelection() {
       time: newValue
     });
   };
+
+  const handleClick = () => {
+    let newState = state;
+    workoutChange(newState);
+  }
 
   const marks = [
     {
@@ -145,6 +150,9 @@ export default function WorkoutSelection() {
           />
         </Box>
       </div>
+      <button onClick={handleClick}>
+        Submit
+      </button>
     </>
   );
 }
