@@ -32,8 +32,25 @@ export default function WorkoutSelection({ workoutChange }) {
     });
   };
 
+  const targetMuscle = {
+    chest: ['pectorals', 'serratus anterior'],
+    arms: ['biceps', 'forearms', 'triceps'],
+    back: ['lats', 'spine', 'upper back'],
+    shoulders: ['delts', 'levator scapulae', 'traps'],
+    legs: ['abductors', 'adductors', 'calves', 'glutes', 'hamstrings', 'quads'],
+    core: ['abs'],
+    mobility: ['cardiovascular system'],
+  }
+
   const handleClick = () => {
-    let newState = state;
+    let newState = [];
+    for (let key in state) {
+      if (state[key] === true) {
+        newState = newState.concat(targetMuscle[key])
+      }
+    }
+    console.log(newState);
+    newState.push(state.time)
     workoutChange(newState);
   }
 
