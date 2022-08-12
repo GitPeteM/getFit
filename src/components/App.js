@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       workoutList: [],
       workouts: [],
-      time: '',
+      time: 0,
     };
 
     this.handleWOChange = this.handleWOChange.bind(this);
@@ -36,7 +36,6 @@ class App extends React.Component {
 
     axios.request(options)
       .then((response) => {
-        console.log('response', response);
         this.setState({workouts: response.data});
       }).catch((error) => {
         console.error(error);
@@ -51,9 +50,9 @@ class App extends React.Component {
         newWorkouts.push(workout);
       }
     })
-    console.log('list', newWorkouts);
     this.setState({ workoutList: newWorkouts });
-    let newTime = newWorkouts[newWorkouts.length - 1];
+    console.log('handleWOChange', WOSelection)
+    let newTime = WOSelection[WOSelection.length - 1];
     this.setState({time: newTime});
 
   }
@@ -69,7 +68,8 @@ class App extends React.Component {
         </div>
       )
     }
-    if (time === undefined) {
+    console.log('time', time);
+    if (time === 0) {
       return (<div className={styles.text}>
         Please select a Time Limit
       </div>
@@ -94,7 +94,6 @@ class App extends React.Component {
     let i = 1;
     while (i <= 10) {
       let index = Math.floor(Math.random() * WOLength)
-      console.log('index', index);
       WOList.push(this.state.workoutList[index])
       i++;
     }
@@ -102,8 +101,6 @@ class App extends React.Component {
   }
 
   render() {
-    const { workoutList } = this.state;
-    console.log('workoutList', workoutList)
     return (
       <div className={styles.App}>
         <NavBar />
@@ -113,9 +110,6 @@ class App extends React.Component {
             <WorkoutSelection workoutChange={this.handleWOChange} />
           </div>
           <div className={styles.workouts}>
-            {/* {workoutList.length > 0 &&
-            <WorkoutList workouts={workoutList} />
-            } */}
             {this.checkForWorkoutList()}
           </div>
         </div>

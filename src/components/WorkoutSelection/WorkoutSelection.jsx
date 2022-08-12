@@ -15,7 +15,7 @@ export default function WorkoutSelection({ workoutChange }) {
     mobility: false,
     cardio: false,
     flexibility: false,
-    time: ''
+    time: 0
   })
 
   const handleChange = (event) => {
@@ -49,7 +49,6 @@ export default function WorkoutSelection({ workoutChange }) {
         newState = newState.concat(targetMuscle[key])
       }
     }
-    console.log(newState);
     newState.push(state.time)
     workoutChange(newState);
   }

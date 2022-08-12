@@ -15,7 +15,7 @@ export default function WorkoutEntry({ wo }) {
         <img src={wo.gifUrl} alt='Workout Example' />
       </div>
       <div className={styles.numbers}>
-        Sets 4 x Reps 10
+        Decide on Sets and Reps. Recommended to have a warm-up set with any weighted workout.
       </div>
     </div>
   )
