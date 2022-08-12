@@ -18,6 +18,7 @@ class App extends React.Component {
     this.handleWOChange = this.handleWOChange.bind(this);
     this.checkForWorkoutList = this.checkForWorkoutList.bind(this);
     this.getWorkouts = this.getWorkouts.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   componentDidMount() {
@@ -51,7 +52,6 @@ class App extends React.Component {
       }
     })
     this.setState({ workoutList: newWorkouts });
-    console.log('handleWOChange', WOSelection)
     let newTime = WOSelection[WOSelection.length - 1];
     this.setState({time: newTime});
 
@@ -68,7 +68,6 @@ class App extends React.Component {
         </div>
       )
     }
-    console.log('time', time);
     if (time === 0) {
       return (<div className={styles.text}>
         Please select a Time Limit
@@ -78,26 +77,39 @@ class App extends React.Component {
       let i = 1;
       while (i <= 4) {
         let index = Math.floor(Math.random() * WOLength)
-        WOList.push(this.state.workoutList[index])
+        WOList.push(this.state.workoutList[index]);
         i++;
       }
-      return <WorkoutList workouts={WOList} />
+      return <WorkoutList workouts={WOList} handleSave={this.handleSave} />
     } else if (time === 30) {
       let i = 1;
       while (i <= 7) {
         let index = Math.floor(Math.random() * WOLength)
-        WOList.push(this.state.workoutList[index])
+        WOList.push(this.state.workoutList[index]);
         i++;
       }
-      return <WorkoutList workouts={WOList} />
+      return <WorkoutList workouts={WOList} handleSave={this.handleSave} />
     }
     let i = 1;
     while (i <= 10) {
       let index = Math.floor(Math.random() * WOLength)
-      WOList.push(this.state.workoutList[index])
+      WOList.push(this.state.workoutList[index]);
       i++;
     }
-    return <WorkoutList workouts={WOList} />
+    return <WorkoutList workouts={WOList} handleSave={this.handleSave} />
+  }
+
+  // Create a Save Workout button to database
+  handleSave(currentWorkout) {
+    axios.post('/workouts', {
+      currentWorkout
+    })
+    .then((response) => {
+      console.log('Workout Saved');
+    })
+    .catch((error) => {
+      console.log('There was an error saving the workout', error);
+    })
   }
 
   render() {
@@ -119,7 +131,6 @@ class App extends React.Component {
 }
 
 export default App;
-
 
 
 // workouts: [{
