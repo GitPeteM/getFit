@@ -35,6 +35,20 @@
   font-size: x-large;
 }
 
+.SW {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  padding-left: 20px;
+  position: relative;
+  margin: 0.5rem;
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.SW_inner {
+  padding: 1rem;
+}
+
 /*  Navigation Bar  */
 
 .Navbar {
